@@ -1,0 +1,2 @@
+Imagem disponível:
+ - docker pull diogomarcel/fullcycle:latest
