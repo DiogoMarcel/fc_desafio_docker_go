@@ -1,15 +1,13 @@
-FROM golang:alpine3.18 AS builder
+FROM golang:latest AS builder
 
-WORKDIR /app
+WORKDIR /go/src/app
 
-COPY . .
+COPY ./goFiles .
 
-RUN go build -o appFullCycle 
+RUN go build -o /app main.go
 
 FROM scratch 
 
-WORKDIR /app
+COPY --from=builder /app /app
 
-COPY --from=builder /app .
-
-CMD [ "./appFullCycle" ]
+CMD [ "/app" ]
